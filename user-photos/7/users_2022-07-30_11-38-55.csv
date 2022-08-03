@@ -1,0 +1,19 @@
+User ID,E-mail,First Name,Last Name,Roles,Enabled
+6,nhom1@gmail.com,dung,vu,"[Role(id=3, name=Salesperson, description=Salesperson), Role(id=2, name=Editor, description=Editor)]",true
+3,vulinh.lucnam98@gmail.com,Nu,Linh vu,"[Role(id=1, name=Admin, description=Admin)]",true
+5,vulinh.lucnam99@gmail.com,Nu,Linh vu,"[Role(id=1, name=Admin, description=Admin)]",true
+7,vuthilinh.itk12.1998@gmail.com,vu linh,vu,[],false
+10,vuthilinh.itk12.18@gmail.com,vulinhds,vus,[],false
+11,vuthilinh.itk12.8@gmail.com,vulinhds,vus,[],false
+12,vuthilinh.itk12@gmail.com,vulinhds,vus,[],false
+14,vuthilinh.itk1@gmail.com,vulinhds,vus,[],false
+15,vuthilinh.itk@gmail.com,vulinhds,vus,[],false
+16,vutilinh.itk@gmail.com,vulinhds,vus,[],false
+18,vutilinh.it@gmail.com,vulinhds,vus,[],false
+19,vutilinh.i@gmail.com,vulinhds,vus,[],false
+21,vutilnh.i@gmail.com,vulinhds,vus,[],false
+22,vutinh.i@gmail.com,vulinhds,vus,[],false
+23,vutih.i@gmail.com,vulinhds,vus,[],false
+24,vuth.i@gmail.com,vulinhds,vus,[],false
+9,vuthilinh.itk12.198@gmail.com,vulinhs,vus,[],false
+26,vuth.i@mail.com,vulnhds,vus,[],false
