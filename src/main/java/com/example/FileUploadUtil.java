@@ -7,14 +7,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.stream.Stream;
-
 import org.apache.log4j.spi.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.jwt.AuthEntryPointJwt;
 
 public class FileUploadUtil {
-
+///thay doi roi nhe
 	public static void saveFile(String uploadDir, String fileName, 
 			MultipartFile multipartFile) throws IOException {
 		Path uploadPath = Paths.get(uploadDir);
