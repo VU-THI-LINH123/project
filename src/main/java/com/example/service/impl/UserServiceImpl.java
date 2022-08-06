@@ -20,8 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.FileUploadUtil;
 import com.example.domain.Role;
 import com.example.domain.User;
+import com.example.dto.response.CustomPageImpl;
 import com.example.dto.response.ResultResponse;
-import com.example.dto.response.UserSearchResponse;
 import com.example.exception.CustomException;
 import com.example.exception.CustomExceptionHandler;
 import com.example.repository.RoleRepository;
@@ -62,7 +62,7 @@ public class UserServiceImpl {
 			result= userRepo.findAll(pageable);
 		
 		}
-	       long startCount = (pageNum - 1) * pageSize+ 1;
+	        long startCount = (pageNum - 1) * pageSize+ 1;
 		    long endCount = startCount + pageSize - 1;
 			if (endCount > result.getTotalElements()) {
 				endCount = result.getTotalElements();
@@ -71,7 +71,7 @@ public class UserServiceImpl {
 					.statusCode(200)
 					.messageCode("api.success")
 					.message("Success!")
-					.result(new UserSearchResponse(pageNum, pageSize,result.getTotalPages(),startCount,endCount,result.getTotalElements(),result.getContent(), sortField, sortDir, keyword))
+					.result(new CustomPageImpl<User>(pageNum, pageSize,result.getTotalPages(),startCount, endCount,result.getTotalElements(),result.getContent(), sort, keyword))
 					.build();
 	}
 	public ResultResponse save( MultipartFile multipartFile, User user) throws CustomException

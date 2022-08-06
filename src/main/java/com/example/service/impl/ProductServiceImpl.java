@@ -13,10 +13,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.example.FileUploadUtil;
 import com.example.domain.Product;
-import com.example.dto.response.ProductSearchResponse;
+import com.example.domain.User;
+import com.example.dto.response.CustomPageImpl;
 import com.example.dto.response.ResultResponse;
 import com.example.repository.ProductRepository;
 
@@ -43,9 +43,7 @@ public class ProductServiceImpl {
 					endCount = pageProducts.getTotalElements();
 				}
 				return ResultResponse.builder().statusCode(200).messageCode("api.success").message("Success!")
-						.result(new ProductSearchResponse(pageNum, pageSize, pageProducts.getTotalPages(), startCount,
-								endCount, pageProducts.getTotalElements(), pageProducts.getContent(), sortField,
-								sortDir, keyword))
+						.result(new CustomPageImpl<Product>(pageNum, pageSize,pageProducts.getTotalPages(),startCount, endCount,pageProducts.getTotalElements(),pageProducts.getContent(), sort, keyword))
 						.build();
 			}
 			Page<Product> pageProducts = repo.findAll(keyword, pageable);
@@ -55,9 +53,7 @@ public class ProductServiceImpl {
 				endCount = pageProducts.getTotalElements();
 			}
 			return ResultResponse.builder().statusCode(200).messageCode("api.success").message("Success!")
-					.result(new ProductSearchResponse(pageNum, pageSize, pageProducts.getTotalPages(), startCount,
-							endCount, pageProducts.getTotalElements(), pageProducts.getContent(), sortField, sortDir,
-							keyword))
+					.result(new CustomPageImpl<Product>(pageNum, pageSize,pageProducts.getTotalPages(),startCount, endCount,pageProducts.getTotalElements(),pageProducts.getContent(), sort, keyword))
 					.build();
 		}
 
@@ -69,9 +65,7 @@ public class ProductServiceImpl {
 				endCount = pageProducts.getTotalElements();
 			}
 			return ResultResponse.builder().statusCode(200).messageCode("api.success").message("Success!")
-					.result(new ProductSearchResponse(pageNum, pageSize, pageProducts.getTotalPages(), startCount,
-							endCount, pageProducts.getTotalElements(), pageProducts.getContent(), sortField, sortDir,
-							keyword))
+					.result(new CustomPageImpl<Product>(pageNum, pageSize,pageProducts.getTotalPages(),startCount, endCount,pageProducts.getTotalElements(),pageProducts.getContent(), sort, keyword))
 					.build();
 		}
 		Page<Product> pageProducts = repo.findAll(pageable);
@@ -81,8 +75,7 @@ public class ProductServiceImpl {
 			endCount = pageProducts.getTotalElements();
 		}
 		return ResultResponse.builder().statusCode(200).messageCode("api.success").message("Success!")
-				.result(new ProductSearchResponse(pageNum, pageSize, pageProducts.getTotalPages(), startCount, endCount,
-						pageProducts.getTotalElements(), pageProducts.getContent(), sortField, sortDir, keyword))
+				.result(new CustomPageImpl<Product>(pageNum, pageSize,pageProducts.getTotalPages(),startCount, endCount,pageProducts.getTotalElements(),pageProducts.getContent(), sort, keyword))
 				.build();
 	}
 	public ResultResponse save(Product product,MultipartFile multipartFile) {

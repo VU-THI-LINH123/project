@@ -14,13 +14,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.example.FileUploadUtil;
 import com.example.domain.Brand;
-import com.example.domain.User;
-import com.example.dto.response.BrandSearchResponse;
+import com.example.dto.response.CustomPageImpl;
 import com.example.dto.response.ResultResponse;
-import com.example.dto.response.UserSearchResponse;
 import com.example.exception.CustomException;
 import com.example.repository.BrandRepository;
 
@@ -49,11 +46,8 @@ public class BrandServiceImpl {
 			if (endCount > result.getTotalElements()) {
 				endCount = result.getTotalElements();
 			}
-	       return ResultResponse.builder()
-					.statusCode(200)
-					.messageCode("api.success")
-					.message("Success!")
-					.result(new BrandSearchResponse(pageNum, pageSize,result.getTotalPages(),startCount,endCount,result.getTotalElements(),result.getContent(), sortField, sortDir, keyword))
+			return ResultResponse.builder().statusCode(200).messageCode("api.success").message("Success!")
+					.result(new CustomPageImpl<Brand>(pageNum, pageSize,result.getTotalPages(),startCount, endCount,result.getTotalElements(),result.getContent(), sort, keyword))
 					.build();
 	}
 	public Brand get(Integer id) throws CustomException  {

@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.jwt.AuthEntryPointJwt;
 
 public class FileUploadUtil {
-///thay doi roi nhe
 	public static void saveFile(String uploadDir, String fileName, 
 			MultipartFile multipartFile) throws IOException {
 		Path uploadPath = Paths.get(uploadDir);

@@ -18,7 +18,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import com.example.FileUploadUtil;
 import com.example.domain.Category;
-import com.example.dto.response.CategoriesSearchResponse;
+import com.example.domain.Product;
+import com.example.dto.response.CustomPageImpl;
 import com.example.dto.response.ResultResponse;
 import com.example.exception.CustomException;
 import com.example.repository.CategoryRepository;
@@ -87,20 +88,14 @@ public class CategoryServiceImpl {
 				category.setHasChildren(category.getChildren().size() > 0);
 			categories.add(category.copyFull(category));
 			}
-			return ResultResponse.builder()
-					.statusCode(200)
-					.messageCode("api.success")
-					.message("Success!")
-					.result(new CategoriesSearchResponse(pageNum, pageSize,pageCategories.getTotalPages(),startCount,endCount,pageCategories.getTotalElements(), categories,"name", sortDir, keyword))
+			return ResultResponse.builder().statusCode(200).messageCode("api.success").message("Success!")
+					.result(new CustomPageImpl<Category>(pageNum, pageSize,pageCategories.getTotalPages(),startCount, endCount,pageCategories.getTotalElements(),pageCategories.getContent(), sort, keyword))
 					.build();
 			
 		} else {
 			System.out.println("thoi anh hay di ve...");
-			return ResultResponse.builder()
-					.statusCode(200)
-					.messageCode("api.success")
-					.message("Success!")
-					.result(new CategoriesSearchResponse(pageNum, pageSize,pageCategories.getTotalPages(),startCount,endCount,pageCategories.getTotalElements(),listHierarchicalCategories(rootCategories, sortDir),"name", sortDir, keyword))
+			return ResultResponse.builder().statusCode(200).messageCode("api.success").message("Success!")
+					.result(new CustomPageImpl<Category>(pageNum, pageSize,pageCategories.getTotalPages(),startCount, endCount,pageCategories.getTotalElements(),pageCategories.getContent(), sort, keyword))
 					.build();
 		}
 	}
