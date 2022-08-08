@@ -33,7 +33,7 @@ public class ProductController {
 			) {
 		return  productServiceImpl.listByPage(pageNum,pageSize, sortField, sortDir, keyword, categoryId);		
 	}
-	@PostMapping("/products/save")
+	@PostMapping("/")
 	public ResultResponse saveProduct(Product product,
 			@RequestParam("fileImage") MultipartFile multipartFile) throws IOException {
 		

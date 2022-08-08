@@ -32,7 +32,12 @@ public class BrandController {
 			@RequestParam("sortDir") String sortDir, @RequestParam("keyword") String keyword) {
 		return brandServiceImpl.listByPage(pageNum, pageSize, sortField, sortDir, keyword);
 	}
-	@PostMapping("/save")
+	@GetMapping("/")
+	public ResultResponse listAll()
+	{
+		return brandServiceImpl.listAll();
+	}
+	@PostMapping("/")
 	public ResultResponse saveBrand(Brand brand, @RequestParam("fileImage") MultipartFile multipartFile) throws  CustomException {
 		
 		return brandServiceImpl.save(brand, multipartFile);	

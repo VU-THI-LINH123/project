@@ -26,6 +26,13 @@ public class BrandServiceImpl {
 	private static final Logger logger = LoggerFactory.getLogger(BrandServiceImpl.class);
 	@Autowired
 	private BrandRepository brandRepository;
+	public ResultResponse listAll()
+	{
+		Sort sort=Sort.by("name").ascending();
+		 return ResultResponse.builder().statusCode(200).messageCode("api.success").message("Success!")
+				.result(brandRepository.findAll(sort))
+				.build();
+	}
 	public  ResultResponse listByPage(int pageNum,int pageSize, String sortField, String sortDir, String keyword) {
 		Sort sort = Sort.by(sortField);
 		
@@ -47,7 +54,7 @@ public class BrandServiceImpl {
 				endCount = result.getTotalElements();
 			}
 			return ResultResponse.builder().statusCode(200).messageCode("api.success").message("Success!")
-					.result(new CustomPageImpl<Brand>(pageNum, pageSize,result.getTotalPages(),startCount, endCount,result.getTotalElements(),result.getContent(), sort, keyword))
+					.result(new CustomPageImpl(pageNum, pageSize,result.getTotalPages(),startCount, endCount,result.getTotalElements(),result.getContent(), sort, keyword))
 					.build();
 	}
 	public Brand get(Integer id) throws CustomException  {

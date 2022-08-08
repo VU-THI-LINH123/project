@@ -26,7 +26,7 @@ import com.example.repository.CategoryRepository;
 
 @Service
 @Transactional
-public class CategoryServiceImpl {
+public class CategoryServiceImpl  {
 	@Autowired
 	private CategoryRepository categoryRepository;
 	public ResultResponse save(MultipartFile multipartFile,Category category) {

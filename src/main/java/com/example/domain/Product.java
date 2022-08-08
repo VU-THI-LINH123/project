@@ -1,12 +1,8 @@
 package com.example.domain;
-
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,13 +14,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
-import com.example.domain.Brand;
-import com.example.domain.Category;
-import com.example.domain.ProductImage;
-
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 @Entity
 @Table(name = "products")
+@Data
+@Getter
+@Setter
+@Builder
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

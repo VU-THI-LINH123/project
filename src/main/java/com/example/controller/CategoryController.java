@@ -70,11 +70,10 @@ public class CategoryController {
 	public ResultResponse updateCategoryEnabledStatus(@PathVariable("id") Integer id,
 			@PathVariable("status") boolean enabled) {
 		categoryServiceImpl.updateCategoryEnabledStatus(id, enabled);
-
 		return categoryServiceImpl.updateCategoryEnabledStatus(id, enabled);
 	}
 
-	@DeleteMapping("/categories/delete/{id}")
+	@DeleteMapping("/{id}")
 	public ResultResponse deleteCategory(@PathVariable(name = "id") Integer id) throws CustomException {
 
 		return categoryServiceImpl.delete(id);

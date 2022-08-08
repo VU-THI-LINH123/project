@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomPageImpl<T>  {
+public class CustomPageImpl<T>   {
     private int number;
     private int size;
     private int totalPages;
