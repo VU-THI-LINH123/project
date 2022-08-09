@@ -43,7 +43,7 @@ public class ProductServiceImpl {
 					endCount = pageProducts.getTotalElements();
 				}
 				return ResultResponse.builder().statusCode(200).messageCode("api.success").message("Success!")
-						.result(new CustomPageImpl<Product>(pageNum, pageSize,pageProducts.getTotalPages(),startCount, endCount,pageProducts.getTotalElements(),pageProducts.getContent(), sort, keyword))
+						.result(new CustomPageImpl<Product>(pageNum, pageSize,pageProducts.getTotalPages(),startCount, endCount,pageProducts.getTotalElements(),pageProducts.getContent(), sortDir,sortField, keyword))
 						.build();
 			}
 			Page<Product> pageProducts = repo.findAll(keyword, pageable);
@@ -53,7 +53,7 @@ public class ProductServiceImpl {
 				endCount = pageProducts.getTotalElements();
 			}
 			return ResultResponse.builder().statusCode(200).messageCode("api.success").message("Success!")
-					.result(new CustomPageImpl<Product>(pageNum, pageSize,pageProducts.getTotalPages(),startCount, endCount,pageProducts.getTotalElements(),pageProducts.getContent(), sort, keyword))
+					.result(new CustomPageImpl<Product>(pageNum, pageSize,pageProducts.getTotalPages(),startCount, endCount,pageProducts.getTotalElements(),pageProducts.getContent(), sortDir,sortField, keyword))
 					.build();
 		}
 
@@ -65,7 +65,7 @@ public class ProductServiceImpl {
 				endCount = pageProducts.getTotalElements();
 			}
 			return ResultResponse.builder().statusCode(200).messageCode("api.success").message("Success!")
-					.result(new CustomPageImpl<Product>(pageNum, pageSize,pageProducts.getTotalPages(),startCount, endCount,pageProducts.getTotalElements(),pageProducts.getContent(), sort, keyword))
+					.result(new CustomPageImpl<Product>(pageNum, pageSize,pageProducts.getTotalPages(),startCount, endCount,pageProducts.getTotalElements(),pageProducts.getContent(), sortDir,sortField, keyword))
 					.build();
 		}
 		Page<Product> pageProducts = repo.findAll(pageable);
@@ -75,7 +75,7 @@ public class ProductServiceImpl {
 			endCount = pageProducts.getTotalElements();
 		}
 		return ResultResponse.builder().statusCode(200).messageCode("api.success").message("Success!")
-				.result(new CustomPageImpl<Product>(pageNum, pageSize,pageProducts.getTotalPages(),startCount, endCount,pageProducts.getTotalElements(),pageProducts.getContent(), sort, keyword))
+				.result(new CustomPageImpl<Product>(pageNum, pageSize,pageProducts.getTotalPages(),startCount, endCount,pageProducts.getTotalElements(),pageProducts.getContent(),sortDir,sortField, keyword))
 				.build();
 	}
 	public ResultResponse save(Product product,MultipartFile multipartFile) {

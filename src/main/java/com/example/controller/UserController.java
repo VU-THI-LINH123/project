@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,7 +35,7 @@ public class UserController {
 		return userServiceImpl.listByPage(pageNum, pageSize, sortField, sortDir, keyword);
 	}
 
-	@GetMapping("")
+	@PostMapping("")
 	public ResultResponse saveUser(@RequestParam("image") MultipartFile multipartFile,
 			@RequestParam("user") String user) throws CustomException {
 		ObjectMapper mapper = new ObjectMapper();
@@ -53,7 +54,7 @@ public class UserController {
 
 		return userServiceImpl.delete(id);
 	}
-	@GetMapping("/{id}/enabled/{status}")
+	@PutMapping("/{id}/enabled/{status}")
 	public ResultResponse updateUserEnabledStatus(@PathVariable("id") Integer id,
 			@PathVariable("status") boolean enabled) {
 		System.out.println(enabled);

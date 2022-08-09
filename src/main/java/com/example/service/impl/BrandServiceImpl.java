@@ -37,7 +37,7 @@ public class BrandServiceImpl {
 		Sort sort = Sort.by(sortField);
 		
 		sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
-				
+		sortDir=sortDir.equals("asc") ? "asc":"desc";		
 		Pageable pageable = PageRequest.of(pageNum - 1, pageSize, sort);
 		Page<Brand>result=null;
 		
@@ -54,7 +54,7 @@ public class BrandServiceImpl {
 				endCount = result.getTotalElements();
 			}
 			return ResultResponse.builder().statusCode(200).messageCode("api.success").message("Success!")
-					.result(new CustomPageImpl(pageNum, pageSize,result.getTotalPages(),startCount, endCount,result.getTotalElements(),result.getContent(), sort, keyword))
+					.result(new CustomPageImpl(pageNum, pageSize,result.getTotalPages(),startCount, endCount,result.getTotalElements(),result.getContent(), sortDir,sortField, keyword))
 					.build();
 	}
 	public Brand get(Integer id) throws CustomException  {

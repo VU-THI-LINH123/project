@@ -24,7 +24,8 @@ public class CustomPageImpl<T>   {
     private long endCount;
     private long totalElements;
     private List<T> content;
-    private Sort sort;
+    private String sortDir;
+    private String sortField;
     private String keyword;
  
 }

@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.domain.Category;
 import com.example.domain.User;
-
+import com.example.dto.response.CustomPageImpl;
 import com.example.dto.response.ResultResponse;
 import com.example.exception.CustomException;
 import com.example.export.CategoryCsvExporter;
@@ -64,13 +64,6 @@ public class CategoryController {
 		}
 
 		return categoryServiceImpl.listByPage(pageNum, pageSize, sortDir, keyword);
-	}
-
-	@PutMapping("/{id}/enabled/{status}")
-	public ResultResponse updateCategoryEnabledStatus(@PathVariable("id") Integer id,
-			@PathVariable("status") boolean enabled) {
-		categoryServiceImpl.updateCategoryEnabledStatus(id, enabled);
-		return categoryServiceImpl.updateCategoryEnabledStatus(id, enabled);
 	}
 
 	@DeleteMapping("/{id}")

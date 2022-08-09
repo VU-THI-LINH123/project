@@ -2,11 +2,11 @@ package com.example.service.impl;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.NoSuchElementException;
+
 
 import javax.transaction.Transactional;
 
-import org.aspectj.weaver.NewConstructorTypeMunger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,12 +18,12 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.FileUploadUtil;
-import com.example.domain.Role;
+
 import com.example.domain.User;
 import com.example.dto.response.CustomPageImpl;
 import com.example.dto.response.ResultResponse;
 import com.example.exception.CustomException;
-import com.example.exception.CustomExceptionHandler;
+
 import com.example.repository.RoleRepository;
 import com.example.repository.UserRepository;
 @Service
@@ -71,7 +71,7 @@ public class UserServiceImpl {
 					.statusCode(200)
 					.messageCode("api.success")
 					.message("Success!")
-					.result(new CustomPageImpl<User>(pageNum, pageSize,result.getTotalPages(),startCount, endCount,result.getTotalElements(),result.getContent(), sort, keyword))
+					.result(new CustomPageImpl<User>(pageNum, pageSize,result.getTotalPages(),startCount, endCount,result.getTotalElements(),result.getContent(), sortDir,sortField, keyword))
 					.build();
 	}
 	public ResultResponse save( MultipartFile multipartFile, User user) throws CustomException
@@ -164,6 +164,11 @@ public class UserServiceImpl {
 		return true;
 	}
 	public ResultResponse delete(Integer id) throws CustomException {
+		try {
+		userRepo.findById(id).get();
+		}catch (Exception e) {
+		     throw new CustomException(0, null, null);
+		}
 		userRepo.deleteById(id);
 		return ResultResponse.builder()
 				.statusCode(200)
