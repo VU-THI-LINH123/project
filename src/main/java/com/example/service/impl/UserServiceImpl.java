@@ -55,7 +55,7 @@ public class UserServiceImpl {
 		Pageable pageable = PageRequest.of(pageNum - 1, pageSize, sort);
 		Page<User>result=null;
 		
-		if (keyword != null) {
+		if (keyword != null && keyword.trim()!="") {
 			result= userRepo.findAll(keyword, pageable);
 		}
 		else { 

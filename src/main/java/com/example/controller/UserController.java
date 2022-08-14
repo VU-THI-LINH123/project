@@ -21,7 +21,7 @@ import com.example.export.UserPdfExporter;
 import com.example.service.impl.UserServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+///confffa///
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -32,6 +32,7 @@ public class UserController {
 	public ResultResponse listByPage(@PathVariable(name = "pageNum") int pageNum,
 			@RequestParam("pageSize") int pageSize, @RequestParam("sortField") String sortField,
 			@RequestParam("sortDir") String sortDir, @RequestParam("keyword") String keyword) {
+		System.out.println("h"+keyword+"hcon yeu...........");
 		return userServiceImpl.listByPage(pageNum, pageSize, sortField, sortDir, keyword);
 	}
 
