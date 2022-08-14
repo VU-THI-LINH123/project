@@ -3,6 +3,7 @@ package com.example.user;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,14 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.annotation.Rollback;
 
+import com.example.domain.Brand;
 import com.example.domain.Role;
 import com.example.domain.User;
+import com.example.repository.BrandRepository;
 import com.example.repository.UserRepository;
 @DataJpaTest(showSql = false)
 @AutoConfigureTestDatabase(replace = Replace.NONE)
@@ -29,24 +33,60 @@ public class UserRepositoryTests {
 	@Autowired
 	private TestEntityManager entityManager;
 	
-	@Test
-	public void testCreateNewUserWithOneRole() {
-		Role roleAdmin = entityManager.find(Role.class, 1);
-		User user = new User("vuthilinh.itk12.1997@gmail.com", tEncodePassword("conyeume@123"), "Nu", "Vu Linh",true);
-		user.addRole(roleAdmin);
-		
-		User savedUser = repo.save(user);
-		
-		assertThat(savedUser.getId()).isGreaterThan(0);
-	}
-	public String tEncodePassword(String passs) {
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String encodedPassword = passwordEncoder.encode(passs);
-		
-		System.out.println(encodedPassword);
-		return encodedPassword;
+//	@Test
+//	public void testCreateNewUserWithOneRole() {
+//		Role roleAdmin = entityManager.find(Role.class, 1);
+//		User user = new User("vuthilinh.itk12.1997@gmail.com", tEncodePassword("conyeume@123"), "Nu", "Vu Linh",true);
+//		user.addRole(roleAdmin);
+//		
+//		User savedUser = repo.save(user);
+//		
+//		assertThat(savedUser.getId()).isGreaterThan(0);
+//	}
+//	public String tEncodePassword(String passs) {
+//		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//		String encodedPassword = passwordEncoder.encode(passs);
+//		
+//		System.out.println(encodedPassword);
+//		return encodedPassword;
+//	
+//	}
+
+//	@Autowired BrandRepository brandRepository;
+//	@Test
+//	public void testId()
+//	{
+//	     Optional<Brand> m  =brandRepository.findById(100);
+//	     if(m.orElse(null)!=null)
+//	     {
+//	    	 System.out.println("khong ton tai");
+//	     }
+//	}
+//	@Autowired BrandRepository brandRepository2;
+//	@Test
+//	public void listByPage()
+//	{
+//		int pageNumber=3;
+//		int pageSize=5;
+//		String keyWord="h";
+//		String sortField ="hoa";
+//		String sortDir="asc";
+//		Sort sort=Sort.by(sortField);
+//		sort =sortDir.equals("asc")? sort.ascending():sort.descending();
+//		Pageable pageable=PageRequest.of(pageNumber, pageSize, sort);
+//		Page< Brand>page=brandRepository.findAll(keyWord,pageable);
+//		List<Brand>brands=page.getContent();
+//		long totalElements=page.getTotalElements();
+//		long TotalPages=page.getTotalPages();
+//		long startCount=(pageNumber-1)*pageSize+1;
+//		long endCount=startCount+pageSize-1;
+//	   if(endCount>page.getTotalElements())
+//	   {
+//		   endCount=page.getTotalElements();
+//	   }
+//	}
+//	
 	
-	}
 //	@Test
 //	public void testCreateNewUserWithTwoRoles() {
 //		User userRavi = new User("ravi@gmail.com", "ravi2020", "Ravi", "Kumar");
@@ -163,4 +203,16 @@ public class UserRepositoryTests {
 //		
 //		assertThat(listUsers.size()).isGreaterThan(0);
 //	}
+	@Test
+	public void EncodePassword() {
+		
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String encodedPassword = passwordEncoder.encode("vuthilinh.itk12.1998@gmail.com");
+		System.out.println("my mother love my");
+		System.out.println(encodedPassword);
+         boolean check=passwordEncoder.matches("vuthilinh.itk12.1998@gmail.com", encodedPassword);
+         System.out.println(check? "password nhap dung":"password nhap sai");
+          Object obj=   passwordEncoder.equals(encodedPassword);
+         System.out.println(obj.toString());
+	}
 }
