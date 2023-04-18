@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class CustomException extends Exception {
 	private static final long serialVersionUID = 1L;
 
-	private int statusCode;
+	private int statusCodej;
 	private String messageCode;
 	private String message;
 }
